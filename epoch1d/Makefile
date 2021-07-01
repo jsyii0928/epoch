@@ -223,6 +223,9 @@ DEFINES := $(DEFINE)
 # Include bremsstrahlung routines
 #DEFINES += $(D)BREMSSTRAHLUNG
 
+# Include the option to run in a hybrid-PIC electron transport mode
+#DEFINES += $(D)HYBRID
+
 # Use Intel-specific 'mm_prefetch' calls to load next particle in the list
 # into cache ahead of time. Gives ~10% speed-up with Intel 12 compilers.
 # WARNING: Under some circumstances this causes SEGFAULTS or incorrect results
@@ -349,9 +352,9 @@ FULLTARGET = $(BINDIR)/$(TARGET)
 SOURCE_ALL := Makefile $(SRCFILES) $(INCLUDES) pack.py pack.sh \
   $(SRCDIR)/COMMIT $(SRCDIR)/gen_commit_string.sh epoch_source_info_dummy.f90
 
-VPATH = $(SRCDIR):$(SRCDIR)/deck:$(SRCDIR)/housekeeping:$(SRCDIR)/io:\
-  $(SRCDIR)/parser:$(SRCDIR)/physics_packages:$(SRCDIR)/user_interaction:\
-  $(SDF)/src:$(OBJDIR)
+VPATH = $(SRCDIR):$(SRCDIR)/deck:$(SRCDIR)/housekeeping:$(SRCDIR)/hybrid:\
+  $(SRCDIR)/io:$(SRCDIR)/parser:$(SRCDIR)/physics_packages:\
+	$(SRCDIR)/user_interaction:$(SDF)/src:$(OBJDIR)
 
 PACK_SDF = $(SRCDIR)/pack.sh
 
@@ -517,6 +520,9 @@ file_injectors.o: file_injectors.F90 partlist.o utilities.o
 finish.o: finish.f90 background_collisions.o collisions.o constants.o deck.o \
 	diagnostics.o dist_fn.o injectors.o ionise.o laser.o probes.o setup.o window.o
 helper.o: helper.F90 balance.o boundary.o deltaf_loader.o partlist.o simple_io.o
+hybrid.o: hybrid.F90 balance.o bremsstrahlung.o boundary.o current_smooth.o \
+	diagnostics.o injectors.o particles.o particle_migration.o photons.o \
+	random_generator.o
 ic_module.o: ic_module.f90 helper.o shared_data.o
 injectors.o: injectors.F90 evaluate.o file_injectors.o particle_temperature.o \
 	partlist.o random_generator.o utilities.o

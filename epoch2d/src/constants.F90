@@ -297,6 +297,7 @@ MODULE constants
   INTEGER(i8), PARAMETER :: c_def_bremsstrahlung = 2**26
   INTEGER(i8), PARAMETER :: c_def_probe_time = 2**27
   INTEGER(i8), PARAMETER :: c_def_transition_rates = 2**28
+  INTEGER(i8), PARAMETER :: c_def_hybrid = 2**29
 
   ! Stagger types
   INTEGER, PARAMETER :: c_stagger_ex = c_stagger_face_x
