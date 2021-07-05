@@ -241,6 +241,10 @@ MODULE constants
 
   ! Constants used for hybrid routines
 #ifdef HYBRID
+  REAL(num), PARAMETER :: kelvin_to_ev = kb / q0
+  ! Atomic mass unit, http://physics.nist.gov/cuu/Constants (as of 3/Aug/2020)
+  REAL(num), PARAMETER :: amu = 1.66053906660e-27_num
+
   ! These allow for spatially varying resistivity models
   INTEGER, PARAMETER :: c_resist_vacuum = 1
   INTEGER, PARAMETER :: c_resist_milchberg = 2
@@ -651,7 +655,12 @@ MODULE constants
   INTEGER, PARAMETER :: c_dump_part_rate_dr      = 76
   INTEGER, PARAMETER :: c_dump_part_rate_rr      = 77
   INTEGER, PARAMETER :: c_dump_part_rate_3br     = 78
-  INTEGER, PARAMETER :: num_vars_to_dump         = 78
+  INTEGER, PARAMETER :: c_dump_hy_resistivity    = 79
+  INTEGER, PARAMETER :: c_dump_hy_el_temp        = 80
+  INTEGER, PARAMETER :: c_dump_hy_ion_charge     = 81
+  INTEGER, PARAMETER :: c_dump_hy_ion_num_dens   = 82
+  INTEGER, PARAMETER :: c_dump_hy_ion_temp       = 83
+  INTEGER, PARAMETER :: num_vars_to_dump         = 83
 
   INTEGER, PARAMETER :: c_subset_random     = 1
   INTEGER, PARAMETER :: c_subset_gamma_min  = 2
