@@ -662,7 +662,10 @@ MODULE constants
   INTEGER, PARAMETER :: c_dump_hy_ion_charge     = 81
   INTEGER, PARAMETER :: c_dump_hy_ion_num_dens   = 82
   INTEGER, PARAMETER :: c_dump_hy_ion_temp       = 83
-  INTEGER, PARAMETER :: num_vars_to_dump         = 83
+  INTEGER, PARAMETER :: c_dump_jbx               = 84
+  INTEGER, PARAMETER :: c_dump_jby               = 85
+  INTEGER, PARAMETER :: c_dump_jbz               = 86
+  INTEGER, PARAMETER :: num_vars_to_dump         = 86
 
   INTEGER, PARAMETER :: c_subset_random     = 1
   INTEGER, PARAMETER :: c_subset_gamma_min  = 2
