@@ -322,9 +322,9 @@ SRCFILES = background_collisions.F90 balance.F90 bethe_heitler.F90 \
   deck_stencil_block.f90 deck_subset_block.F90 deck_window_block.f90 \
   deltaf_loader.F90 diagnostics.F90 dist_fn.F90 epoch2d.F90 evaluate.F90 \
   evaluator_blocks.F90 fields.f90 file_injectors.F90 finish.f90 helper.F90 \
-  hy_fields.F90 hy_resistivity.F90 hy_shared.F90 hybrid.F90 ic_module.f90 \
-  injectors.F90 ionise.F90 iterators.F90 laser.f90 mpi_routines.F90 \
-  mpi_subtype_control.f90 numerics.f90 particle_id_hash.F90 \
+  hy_fields.F90 hy_heating.F90 hy_resistivity.F90 hy_shared.F90 hybrid.F90 \
+  ic_module.f90 injectors.F90 ionise.F90 iterators.F90 laser.f90 \
+  mpi_routines.F90 mpi_subtype_control.f90 numerics.f90 particle_id_hash.F90 \
   particle_migration.F90 particle_pointer_advance.f90 \
   particle_temperature.F90 particles.F90 partlist.F90 photons.F90 \
   prefetch.F90 probes.F90 random_generator.f90 recombination.F90 \
@@ -526,11 +526,12 @@ finish.o: finish.f90 background_collisions.o collisions.o constants.o deck.o \
 	diagnostics.o dist_fn.o injectors.o ionise.o laser.o probes.o setup.o window.o
 helper.o: helper.F90 balance.o boundary.o deltaf_loader.o partlist.o simple_io.o
 hy_fields.o: hy_fields.F90 hy_shared.o
+hy_heating.o: hy_heating.F90 hy_shared.o
 hy_resistivity.o: hy_resistivity.F90 hy_shared.o
 hy_shared.o: hy_shared.F90 boundary.o shared_data.o
 hybrid.o: hybrid.F90 balance.o bremsstrahlung.o boundary.o current_smooth.o \
-	diagnostics.o hy_fields.o hy_resistivity.o injectors.o particles.o \
-	particle_migration.o photons.o random_generator.o
+	diagnostics.o hy_fields.o hy_heating.o hy_resistivity.o injectors.o \
+	particles.o particle_migration.o photons.o random_generator.o
 ic_module.o: ic_module.f90 helper.o shared_data.o
 injectors.o: injectors.F90 evaluate.o file_injectors.o particle_temperature.o \
 	partlist.o random_generator.o utilities.o
