@@ -1490,7 +1490,7 @@ CONTAINS
 #endif
 
         ELSE IF (block_id(1:11) == 'qed energy/') THEN
-#if defined(PHOTONS) || defined(BREMSSTRAHLUNG)
+#if defined(PHOTONS) || defined(BREMSSTRAHLUNG) || defined(HYBRID)
           CALL sdf_read_point_variable(sdf_handle, npart_local, &
               species_subtypes(ispecies), it_qed_energy)
 #else
@@ -1566,6 +1566,20 @@ CONTAINS
             PRINT*, '*** ERROR ***'
             PRINT*, 'Cannot load dump file with time integrated work.'
             PRINT*, 'Please recompile with the -DWORK_DONE_INTEGRATED option.'
+          END IF
+          CALL abort_code(c_err_pp_options_missing)
+          STOP
+#endif
+
+        ELSE IF (block_id(1:16) == 'delta ray depth/') THEN
+#ifdef HYBRID
+          CALL sdf_read_point_variable(sdf_handle, npart_local, &
+              species_subtypes(ispecies), it_optical_depth_delta)
+#else
+          IF (rank == 0) THEN
+            PRINT*, '*** ERROR ***'
+            PRINT*, 'Cannot load dump file with delta-ray optical depths.'
+            PRINT*, 'Please recompile with the -DHYBRID option.'
           END IF
           CALL abort_code(c_err_pp_options_missing)
           STOP
@@ -2024,7 +2038,7 @@ CONTAINS
 
 
 
-#if defined(PHOTONS) || defined(BREMSSTRAHLUNG)
+#if defined(PHOTONS) || defined(BREMSSTRAHLUNG) || defined(HYBRID)
   FUNCTION it_qed_energy(array, npart_this_it, start, param)
 
     REAL(num) :: it_qed_energy
@@ -2068,6 +2082,7 @@ CONTAINS
 
 
 
+<<<<<<< HEAD
 #ifdef WORK_DONE_INTEGRATED
   FUNCTION it_work_x_total(array, npart_this_it, start, param)
 
@@ -2126,6 +2141,28 @@ CONTAINS
     it_work_z_total = 0
 
   END FUNCTION it_work_z_total  
+#endif
+
+
+
+#ifdef HYBRID
+  FUNCTION it_optical_depth_delta(array, npart_this_it, start, param)
+
+    REAL(num) :: it_optical_depth_delta
+    REAL(num), DIMENSION(:), INTENT(IN) :: array
+    INTEGER, INTENT(INOUT) :: npart_this_it
+    LOGICAL, INTENT(IN) :: start
+    INTEGER, INTENT(IN), OPTIONAL :: param
+    INTEGER :: ipart
+
+    DO ipart = 1, npart_this_it
+      iterator_list%optical_depth_delta = array(ipart)
+      iterator_list => iterator_list%next
+    END DO
+
+    it_optical_depth_delta = 0
+
+  END FUNCTION it_optical_depth_delta
 #endif
 
 

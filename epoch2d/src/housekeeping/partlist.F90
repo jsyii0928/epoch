@@ -17,7 +17,7 @@ MODULE partlist
 
   USE shared_data
   USE particle_id_hash_mod
-#if defined(PHOTONS) || defined(BREMSSTRAHLUNG)
+#if defined(PHOTONS) || defined(BREMSSTRAHLUNG) || defined(HYBRID)
   USE random_generator
 #endif
 
@@ -61,7 +61,7 @@ CONTAINS
 #ifdef PHOTONS
     nvar = nvar+1
 #endif
-#if defined(PHOTONS) || defined(BREMSSTRAHLUNG)
+#if defined(PHOTONS) || defined(BREMSSTRAHLUNG) || defined(HYBRID)
     nvar = nvar+1
 #endif
 #if defined(PHOTONS) && defined(TRIDENT_PHOTONS)
@@ -71,6 +71,9 @@ CONTAINS
     nvar = nvar+1
 #endif
 #ifdef PROBE_TIME
+    nvar = nvar + 1
+#endif
+#ifdef HYBRID
     nvar = nvar+1
 #endif
 #ifdef WORK_DONE_INTEGRATED
@@ -448,7 +451,7 @@ CONTAINS
     array(cpos) = a_particle%optical_depth
     cpos = cpos+1
 #endif
-#if defined(PHOTONS) || defined(BREMSSTRAHLUNG)
+#if defined(PHOTONS) || defined(BREMSSTRAHLUNG) || defined(HYBRID)
     array(cpos) = a_particle%particle_energy
     cpos = cpos+1
 #endif
@@ -462,6 +465,10 @@ CONTAINS
 #endif
 #ifdef PROBE_TIME
     array(cpos) = a_particle%probe_time
+    cpos = cpos+1
+#endif
+#ifdef HYBRID
+    array(cpos) = a_particle%optical_depth_delta
     cpos = cpos+1
 #endif
 #ifdef WORK_DONE_INTEGRATED
@@ -531,7 +538,7 @@ CONTAINS
     a_particle%optical_depth = array(cpos)
     cpos = cpos+1
 #endif
-#if defined(PHOTONS) || defined(BREMSSTRAHLUNG)
+#if defined(PHOTONS) || defined(BREMSSTRAHLUNG) || defined(HYBRID)
     a_particle%particle_energy = array(cpos)
     cpos = cpos+1
 #endif
@@ -545,6 +552,10 @@ CONTAINS
 #endif
 #ifdef PROBE_TIME
     a_particle%probe_time = array(cpos)
+    cpos = cpos+1
+#endif
+#ifdef HYBRID
+    a_particle%optical_depth_delta = array(cpos)
     cpos = cpos+1
 #endif
 #ifdef WORK_DONE_INTEGRATED
@@ -593,10 +604,10 @@ CONTAINS
 #if defined(PARTICLE_ID) || defined(PARTICLE_ID4)
     new_particle%id = 0
 #endif
-#if defined(PHOTONS) || defined(BREMSSTRAHLUNG)
-    ! This assigns an optical depth to newly created particle
+#if defined(PHOTONS) || defined(BREMSSTRAHLUNG) || defined(HYBRID)
     new_particle%particle_energy = 0.0_num
 #endif
+! This assigns an optical depth to newly created particle
 #ifdef PHOTONS
     new_particle%optical_depth = LOG(1.0_num / (1.0_num - random()))
 #ifdef TRIDENT_PHOTONS
@@ -624,6 +635,9 @@ CONTAINS
     new_particle%rate_dr = 0.0_num
     new_particle%rate_rr = 0.0_num
     new_particle%rate_3br = 0.0_num
+#endif
+#ifdef HYBRID
+    new_particle%optical_depth_delta = LOG(1.0_num / (1.0_num - random()))
 #endif
 
   END SUBROUTINE init_particle

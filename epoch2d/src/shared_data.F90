@@ -124,7 +124,7 @@ MODULE shared_data
 #ifdef PHOTONS
     REAL(num) :: optical_depth
 #endif
-#if defined(PHOTONS) || defined(BREMSSTRAHLUNG)
+#if defined(PHOTONS) || defined(BREMSSTRAHLUNG) || defined(HYBRID)
     REAL(num) :: particle_energy
 #endif
 #if defined(PHOTONS) && defined(TRIDENT_PHOTONS)
@@ -142,6 +142,9 @@ MODULE shared_data
     REAL(num) :: rate_dr
     REAL(num) :: rate_rr
     REAL(num) :: rate_3br
+#endif
+#ifdef HYBRID
+    REAL(num) :: optical_depth_delta
 #endif
   END TYPE particle
 
@@ -698,6 +701,7 @@ MODULE shared_data
 
     ! Derived variables
     REAL(num) :: z_prime
+    REAL(num) :: iex_term, dedx_c
     REAL(num), ALLOCATABLE :: heat_capacity(:,:)
 
   END TYPE solid
@@ -710,13 +714,16 @@ MODULE shared_data
   INTEGER :: solid_index = 1
 
   ! Global background arrays
-  REAL(num), ALLOCATABLE, DIMENSION(:,:) ::  resistivity, hy_te
+  REAL(num), ALLOCATABLE, DIMENSION(:,:) :: hy_sum_ne, resistivity, hy_te
   REAL(num), ALLOCATABLE, DIMENSION(:,:) :: jbx, jby, jbz
   INTEGER, ALLOCATABLE, DIMENSION(:,:) :: resistivity_model
 
   ! Fit variables for the reduced Lee-More model (initial values for Al)
   REAL(num) :: rlm_1 = 7.0_num
   REAL(num) :: rlm_2 = 3.5_num
+
+  ! Delta electron species flag
+  INTEGER :: delta_electron_species = -1
 
   ! Variables for ionisation routines
   REAL(num), ALLOCATABLE, DIMENSION(:,:) :: ion_charge, ion_reduced_density
@@ -725,9 +732,12 @@ MODULE shared_data
   LOGICAL :: use_hy_ionisation = .FALSE., use_hy_cou_log = .FALSE.
 
   ! Deck variables
-  LOGICAL :: use_hybrid_fields = .FALSE.
+  LOGICAL :: use_hybrid_fields = .FALSE., use_hybrid_collisions = .FALSE.
+  LOGICAL :: produce_delta_rays = .FALSE.
   LOGICAL :: use_ion_temp = .FALSE., run_hy_ionisation = .FALSE.
   LOGICAL :: use_ohmic = .FALSE.
+  REAL(num) :: min_delta_energy = 0.0_num
+  REAL(num) :: min_hybrid_energy = 0.0_num
 #endif
 
   LOGICAL :: use_hybrid = .FALSE.

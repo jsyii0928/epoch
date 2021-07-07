@@ -665,7 +665,8 @@ MODULE constants
   INTEGER, PARAMETER :: c_dump_jbx               = 84
   INTEGER, PARAMETER :: c_dump_jby               = 85
   INTEGER, PARAMETER :: c_dump_jbz               = 86
-  INTEGER, PARAMETER :: num_vars_to_dump         = 86
+  INTEGER, PARAMETER :: c_dump_part_opdepth_delt = 87
+  INTEGER, PARAMETER :: num_vars_to_dump         = 87
 
   INTEGER, PARAMETER :: c_subset_random     = 1
   INTEGER, PARAMETER :: c_subset_gamma_min  = 2

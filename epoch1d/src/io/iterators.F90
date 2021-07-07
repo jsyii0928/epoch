@@ -348,7 +348,7 @@ CONTAINS
         END DO
 #endif
 
-#if defined(PHOTONS) || defined(BREMSSTRAHLUNG)
+#if defined(PHOTONS) || defined(BREMSSTRAHLUNG) || defined(HYBRID)
       CASE (c_dump_part_qed_energy)
         DO WHILE (ASSOCIATED(cur) .AND. (part_count < npoint_it))
           part_count = part_count + 1
@@ -371,6 +371,15 @@ CONTAINS
         DO WHILE (ASSOCIATED(cur) .AND. (part_count < npoint_it))
           part_count = part_count + 1
           array(part_count) = cur%optical_depth_bremsstrahlung
+          cur => cur%next
+        END DO
+#endif
+
+#ifdef HYBRID
+      CASE (c_dump_part_opdepth_delt)
+        DO WHILE (ASSOCIATED(cur) .AND. (part_count < npoint_it))
+          part_count = part_count + 1
+          array(part_count) = cur%optical_depth_delta
           cur => cur%next
         END DO
 #endif
