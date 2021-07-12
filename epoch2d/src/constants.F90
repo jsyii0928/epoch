@@ -87,6 +87,7 @@ MODULE constants
   INTEGER, PARAMETER :: c_bc_cpml_outflow = 13
   INTEGER, PARAMETER :: c_bc_mixed = 14
   INTEGER, PARAMETER :: c_bc_heat_bath = 15
+  INTEGER, PARAMETER :: c_bc_tnsa = 16
 
   ! Collision types
   INTEGER, PARAMETER :: c_coll_ignore = 0
