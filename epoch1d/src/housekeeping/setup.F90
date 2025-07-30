@@ -1865,7 +1865,6 @@ CONTAINS
 
 
 
-<<<<<<< HEAD
 #ifdef WORK_DONE_INTEGRATED
   FUNCTION it_work_x_total(array, npart_this_it, start, param)
 

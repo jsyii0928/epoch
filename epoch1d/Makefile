@@ -321,12 +321,12 @@ SRCFILES = background_collisions.F90 balance.F90 bethe_heitler.F90 \
   deck_particle_probe_block.F90 deck_qed_block.F90 deck_solid_block.F90 \
   deck_species_block.F90 deck_stencil_block.f90 deck_subset_block.F90 \
   deck_window_block.f90 deltaf_loader.F90 diagnostics.F90 dist_fn.F90 \
-  epoch1d.F90 evaluate.F90 evaluator_blocks.F90 fields.f90 finish.f90 \
-  helper.F90 hy_elastic.F90 hy_fields.F90 hy_heating.F90 \
-  hy_ionisation_loss.F90 hy_laser.F90  hy_resistivity.F90 hy_shared.F90 \
-  hybrid.F90 ic_module.f90 injectors.F90 ionise.F90 iterators.F90 \
-  laser.f90 mpi_routines.F90 mpi_subtype_control.f90 numerics.f90 \
-  particle_id_hash.F90 particle_migration.F90 \
+  epoch1d.F90 evaluate.F90 evaluator_blocks.F90 fields.f90 \
+  file_injectors.F90 finish.f90 helper.F90 hy_elastic.F90 hy_fields.F90 \
+  hy_heating.F90 hy_ionisation_loss.F90 hy_laser.F90 hy_resistivity.F90 \
+  hy_shared.F90 hybrid.F90 ic_module.f90 injectors.F90 ionise.F90 \
+  iterators.F90 laser.f90 mpi_routines.F90 mpi_subtype_control.f90 \
+  numerics.f90 particle_id_hash.F90 particle_migration.F90 \
   particle_pointer_advance.f90 particle_temperature.F90 particles.F90 \
   partlist.F90 photons.F90 prefetch.F90 probes.F90 random_generator.f90 \
   recombination.F90 redblack_module.f90 setup.F90 shape_functions.F90 \
@@ -490,13 +490,10 @@ deck_control_block.o: deck_control_block.F90 fields.o strings_advanced.o \
 deck_dist_fn_block.o: deck_dist_fn_block.f90 dist_fn.o strings_advanced.o \
   utilities.o
 deck_fields_block.o: deck_fields_block.f90 simple_io.o strings_advanced.o
-<<<<<<< HEAD
-deck_injector_block.o: deck_injector_block.F90 file_injectors.o injectors.o \
-  shunt.o strings_advanced.o utilities.o
-=======
 deck_hy_laser_block.o: deck_hy_laser_block.F90 hy_laser.o strings_advanced.o \
 	utilities.o
->>>>>>> 27015e0a1 (Added hy_laser hybrid electron injectors)
+deck_injector_block.o: deck_injector_block.F90 file_injectors.o injectors.o \
+  shunt.o strings_advanced.o utilities.o
 deck_hybrid_block.o: deck_hybrid_block.F90 strings_advanced.o utilities.o
 deck_io_block.o: deck_io_block.F90 strings_advanced.o utilities.o
 deck_io_global_block.o: deck_io_global_block.F90 strings_advanced.o utilities.o

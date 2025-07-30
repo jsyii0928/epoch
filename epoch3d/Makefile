@@ -490,13 +490,10 @@ deck_control_block.o: deck_control_block.F90 fields.o strings_advanced.o \
 deck_dist_fn_block.o: deck_dist_fn_block.f90 dist_fn.o strings_advanced.o \
   utilities.o
 deck_fields_block.o: deck_fields_block.f90 simple_io.o strings_advanced.o
-<<<<<<< HEAD
-deck_injector_block.o: deck_injector_block.F90 file_injectors.o injectors.o \
-	shunt.o strings_advanced.o utilities.o
-=======
 deck_hy_laser_block.o: deck_hy_laser_block.F90 hy_laser.o strings_advanced.o \
 	utilities.o
->>>>>>> 27015e0a1 (Added hy_laser hybrid electron injectors)
+deck_injector_block.o: deck_injector_block.F90 file_injectors.o injectors.o \
+	shunt.o strings_advanced.o utilities.o
 deck_hybrid_block.o: deck_hybrid_block.F90 strings_advanced.o utilities.o
 deck_io_block.o: deck_io_block.F90 strings_advanced.o utilities.o
 deck_io_global_block.o: deck_io_global_block.F90 strings_advanced.o utilities.o
