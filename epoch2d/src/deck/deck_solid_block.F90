@@ -42,7 +42,6 @@ CONTAINS
 
   SUBROUTINE solid_block_start
 
-    INTEGER :: io, iu
 #ifdef HYBRID
     INTEGER :: isolid
 
@@ -196,7 +195,6 @@ CONTAINS
 
     REAL(num), DIMENSION(1-ng:,1-ng:), INTENT(INOUT) :: array
     CHARACTER(LEN=*), INTENT(IN) :: value
-    TYPE(stack_element) :: iblock
     TYPE(primitive_stack) :: stack
     INTEGER :: io, iu, ix, iy
     TYPE(parameter_pack) :: parameters

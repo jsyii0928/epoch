@@ -3174,7 +3174,6 @@ CONTAINS
     ! Also applies a random scatter
 
     TYPE(particle), POINTER :: cur
-    INTEGER :: boundary
     REAL(num) :: p_mag, p_dir(3)
     REAL(num) :: theta, phi
 

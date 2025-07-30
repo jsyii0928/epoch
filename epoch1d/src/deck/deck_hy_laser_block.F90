@@ -112,7 +112,7 @@ CONTAINS
     END IF
 
     IF (str_cmp(element, 'ppc')) THEN
-      working_laser%ppc = as_real_print(value, element, errcode)
+      working_laser%ppc = as_integer_print(value, element, errcode)
       RETURN
     END IF
 

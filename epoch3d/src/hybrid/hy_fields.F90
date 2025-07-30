@@ -213,7 +213,7 @@ CONTAINS
 
     INTEGER, INTENT(IN) :: boundary
     REAL(num), DIMENSION(1-ng:,1-ng:,1-ng:), INTENT(INOUT) :: field
-    INTEGER :: i, nn
+    INTEGER :: i
 
     IF (boundary == c_bd_x_min .AND. x_min_boundary) THEN
       DO i = 1, ng-1

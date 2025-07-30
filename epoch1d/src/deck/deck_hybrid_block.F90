@@ -36,7 +36,6 @@ CONTAINS
 
   SUBROUTINE hybrid_deck_finalise
 
-    INTEGER :: io, iu
 #ifdef HYBRID
     IF (deck_state == c_ds_first) RETURN
     IF (use_hybrid .AND. (use_hybrid_collisions .OR. use_hybrid_scatter)) &
@@ -92,7 +91,7 @@ CONTAINS
   FUNCTION hybrid_block_handle_element(element, value) RESULT(errcode)
 
     CHARACTER(*), INTENT(IN) :: element, value
-    INTEGER :: errcode, io, iu
+    INTEGER :: errcode
 
     errcode = c_err_none
     IF (deck_state == c_ds_first) RETURN
@@ -242,7 +241,6 @@ CONTAINS
 
     REAL(num), DIMENSION(1-ng:), INTENT(INOUT) :: array
     CHARACTER(LEN=*), INTENT(IN) :: value
-    TYPE(stack_element) :: iblock
     TYPE(primitive_stack) :: stack
     INTEGER :: io, iu, ix
     TYPE(parameter_pack) :: parameters

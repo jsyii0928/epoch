@@ -44,9 +44,6 @@ MODULE hy_ionisation_loss
 
   REAL(num), PRIVATE :: part_ne, iex_2, iex_c
   REAL(num), PRIVATE :: part_p2, part_v, gamma_rel, part_ke
-  REAL(num), PRIVATE :: el_w
-  LOGICAL, PRIVATE :: bad_weight = .FALSE., weight_warning = .FALSE.
-
   REAL(num), PRIVATE, PARAMETER :: inv_c = 1.0_num/c
   REAL(num), PRIVATE, PARAMETER :: ke_cut_delta = 1.0e3_num*q0
   REAL(num), PRIVATE, PARAMETER :: two_ke_cut_delta = 2.0_num*ke_cut_delta
@@ -67,9 +64,6 @@ CONTAINS
     ! Initialises the optical depths for all electron species, and sets the
     ! values of other useful variables
 
-    INTEGER :: iu, io
-    LOGICAL :: found
-    TYPE(particle_species) :: current_species
     TYPE(particle), POINTER :: current
     REAL(num) :: p_tau
 
@@ -160,7 +154,8 @@ CONTAINS
     ! also applies continuous energy loss. This is the subroutine called by the
     ! hybrid loop.
 
-    INTEGER :: i_sol, part_count, i_part
+    INTEGER :: i_sol
+    INTEGER(I8) :: part_count, i_part
     TYPE(particle), POINTER :: current
     REAL(num) :: part_x, part_y, de
     REAL(num) :: part_ne_test, max_ne

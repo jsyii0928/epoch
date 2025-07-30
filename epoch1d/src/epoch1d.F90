@@ -240,8 +240,8 @@ PROGRAM pic
             .AND. use_collisions
           coll_ion_step = MODULO(step, ci_n_step) == ci_n_step - 1 &
             .AND. use_collisional_ionisation
-          recombine_step = MODULO(step, recombine_n_step) == recombine_n_step - 1&
-             .AND. use_recombination
+          recombine_step = use_recombination .AND. &
+             MODULO(step, recombine_n_step) == recombine_n_step - 1
 
           ! After this line, the particles can be accessed on a cell by cell basis
           ! Using the particle_species%secondary_list property

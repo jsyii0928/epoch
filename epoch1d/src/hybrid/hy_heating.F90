@@ -166,7 +166,7 @@ CONTAINS
     ! eff_heat_capacity = sum(ne/C)
 
     REAL(num) :: j2
-    INTEGER :: ix, i_sol
+    INTEGER :: ix
 
     ! Loop over all grid points to find temperature change
     DO ix = 1, nx

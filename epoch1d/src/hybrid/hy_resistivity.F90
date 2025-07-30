@@ -147,9 +147,8 @@ CONTAINS
 
     INTEGER, INTENT(IN) :: ix
     REAL(num) :: rlm_z_star, rlm_cou_log, rlm_te, rlm_ni
-    REAL(num) :: fermi_temp, ve, ion_term, idebye_huckel2
-    REAL(num) :: ion_sphere_rad, debye_huckel, class_impact, uncert_lim
-    REAL(num) :: b_min, b_max, cou_log
+    REAL(num) :: ve
+    REAL(num) :: ion_sphere_rad
     REAL(num) :: tau_cold, tau_hot, tau
     REAL(num) :: calc_resistivity_rlm
 

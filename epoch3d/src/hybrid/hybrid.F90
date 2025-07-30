@@ -166,10 +166,8 @@ CONTAINS
     ! This subroutine initialises the hybrid arrays, and sets the values of some
     ! constants, to speed up the code
 
-    REAL(num) :: resistivity_init, max_ne, z_real, iex
+    REAL(num) :: max_ne, z_real, iex
     INTEGER :: ix, iy, iz, i_sol
-    INTEGER :: max_id
-    INTEGER :: io, iu
     LOGICAL :: sendbuf(2), recvbuf(2)
     INTEGER :: err
 
