@@ -536,7 +536,7 @@ particle_temperature.o: particle_temperature.F90 constants.o evaluate.o \
   random_generator.o
 particles.o: particles.F90 boundary.o partlist.o prefetch.o
 partlist.o: partlist.F90 particle_id_hash.o random_generator.o shared_data.o
-photons.o: photons.F90 partlist.o
+photons.o: photons.F90 collisions.o partlist.o
 prefetch.o: prefetch.F90 shared_data.o
 probes.o: probes.F90 partlist.o $(SDFMOD)
 random_generator.o: random_generator.f90
