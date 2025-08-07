@@ -64,6 +64,8 @@ CONTAINS
       END IF
     END IF
 #else
+    INTEGER :: iu, io
+
     IF (rank == 0) THEN
       DO iu = 1, nio_units ! Print to stdout and to file
         io = io_units(iu)
@@ -81,8 +83,9 @@ CONTAINS
 
   SUBROUTINE solid_block_end
 
+#ifdef HYBRID
     INTEGER :: io, iu
-
+#endif
     IF (deck_state == c_ds_first) RETURN
 
 #ifdef HYBRID
@@ -107,7 +110,10 @@ CONTAINS
   FUNCTION solid_block_handle_element(element, value) RESULT(errcode)
 
     CHARACTER(*), INTENT(IN) :: element, value
-    INTEGER :: errcode, io, iu
+    INTEGER :: errcode
+#ifdef HYBRID
+    INTEGER :: io, iu
+#endif
 
     errcode = c_err_none
     IF (deck_state == c_ds_first) RETURN
@@ -186,7 +192,7 @@ CONTAINS
   END FUNCTION solid_block_check
 
 
-
+#ifdef HYBRID
   SUBROUTINE fill_array(array, value)
 
     ! A simplified version of the script in deck_species_block. It evaluates the
@@ -224,5 +230,5 @@ CONTAINS
     END DO
 
   END SUBROUTINE fill_array
-
+#endif
 END MODULE deck_solid_block

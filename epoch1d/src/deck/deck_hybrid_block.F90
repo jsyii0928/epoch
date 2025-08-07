@@ -41,6 +41,8 @@ CONTAINS
     IF (use_hybrid .AND. (use_hybrid_collisions .OR. use_hybrid_scatter)) &
         need_random_state = .TRUE.
 #else
+    INTEGER :: iu, io
+
     IF (use_hybrid) THEN
       IF (rank == 0) THEN
         DO iu = 1, nio_units ! Print to stdout and to file
@@ -232,7 +234,7 @@ CONTAINS
   END FUNCTION hybrid_block_check
 
 
-
+#ifdef HYBRID
   SUBROUTINE fill_array(array, value)
 
     ! A simplified version of the script in deck_species_block. It evaluates the
@@ -267,5 +269,5 @@ CONTAINS
     END DO
 
   END SUBROUTINE fill_array
-
+#endif
 END MODULE deck_hybrid_block

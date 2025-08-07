@@ -27,7 +27,7 @@
 ! the laser.f90 file.
 
 MODULE hy_laser
-
+#ifdef HYBRID
   USE partlist
   USE evaluator
   USE particles
@@ -533,5 +533,5 @@ CONTAINS
     CALL rotate_p(part, costheta, phi, part_p)
 
   END SUBROUTINE sample_rotation
-
+#endif
 END MODULE hy_laser

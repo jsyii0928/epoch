@@ -29,9 +29,10 @@ MODULE deck_hy_laser_block
   PUBLIC :: hy_laser_block_handle_element, hy_laser_block_check
 
   TYPE(hy_laser_block), POINTER :: working_laser
+#ifdef HYBRID
   LOGICAL :: hy_boundary_set = .FALSE.
   INTEGER :: hy_boundary
-
+#endif
 CONTAINS
 
   SUBROUTINE hy_laser_deck_initialise
@@ -64,7 +65,7 @@ CONTAINS
   SUBROUTINE hy_laser_block_end
 
     IF (deck_state == c_ds_first) RETURN
-
+#ifdef HYBRID
     ! If we have user defined energy and user defined weight, then the laser
     ! parameters intensity, omega and eficiency will be unused.
     IF (working_laser%e_dist == e_dist_mono_weight .AND. &
@@ -72,7 +73,7 @@ CONTAINS
 
     CALL attach_hy_laser(working_laser)
     hy_boundary_set = .FALSE.
-
+#endif
   END SUBROUTINE hy_laser_block_end
 
 
@@ -81,13 +82,14 @@ CONTAINS
 
     CHARACTER(*), INTENT(IN) :: element, value
     INTEGER :: errcode
+#ifdef HYBRID
     REAL(num) :: dummy
     INTEGER :: io, iu
-
+#endif
     errcode = c_err_none
     IF (deck_state == c_ds_first) RETURN
     IF (element == blank .OR. value == blank) RETURN
-
+#ifdef HYBRID
     IF (str_cmp(element, 'boundary')) THEN
       ! If the hy_boundary has already been set, simply ignore further calls
       IF (hy_boundary_set) RETURN
@@ -308,7 +310,7 @@ CONTAINS
     END IF
 
     errcode = c_err_unknown_element
-
+#endif
   END FUNCTION hy_laser_block_handle_element
 
 
