@@ -22,7 +22,6 @@ MODULE photons
 
   IMPLICIT NONE
 
-
   REAL(num) :: sig2cdt_dV_lcs
   REAL(num) :: cdt_dV
   REAL(num) :: part_pos_global, gamma_global, eta_global
@@ -70,7 +69,6 @@ CONTAINS
         CALL initialise_optical_depth(species_list(ispecies))
       END DO
     END IF
-
 
     cdt_dV = c * dt / dx
     sig2cdt_dV_lcs = 2.0_num * sigma_thomson * cdt_dV

@@ -625,7 +625,6 @@ MODULE shared_data
   LOGICAL :: use_qed = .FALSE.
   LOGICAL :: use_binary_collisions = .FALSE.
 
-
 #ifdef BREMSSTRAHLUNG
   !----------------------------------------------------------------------------
   ! Bremsstrahlung

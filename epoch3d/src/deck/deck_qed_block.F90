@@ -78,6 +78,7 @@ CONTAINS
     END IF
 
     IF (use_qed) need_random_state = .TRUE.
+
     use_binary_collisions = use_LCS
 
     IF (use_binary_collisions) THEN

@@ -232,7 +232,6 @@ MODULE constants
   REAL(num), PARAMETER :: alpha_f = 7.297352575523020256850802729527158e-3_num
   ! tau_c = h_bar / (m0 * c**2)
   REAL(num), PARAMETER :: tau_c = 1.288088667367242662108649212042082e-21_num
-#endif
 
   REAL(num), PARAMETER :: classical_re = 0.25_num / pi / epsilon0 / m0 * (q0 / c)**2
   REAL(num), PARAMETER :: sigma_thomson = 8.0_num * pi / 3.0_num * classical_re**2
@@ -240,6 +239,7 @@ MODULE constants
   REAL(num), PARAMETER :: inv_m0c2 = 1.0_num / m0c2
   REAL(num), PARAMETER :: pire2 = pi * classical_re**2
   REAL(num), PARAMETER :: quarter_pire2 = 0.25_num * pire2
+#endif
 
   ! Constants used for bremsstrahlung with plasma screening
 #ifdef BREMSSTRAHLUNG

@@ -666,8 +666,8 @@ MODULE shared_data
   REAL(num), PARAMETER :: tolerance_cos_angle = 1.0e-6_num
 #endif
 
-  LOGICAL :: use_binary_collisions = .FALSE.
   LOGICAL :: use_qed = .FALSE.
+  LOGICAL :: use_binary_collisions = .FALSE.
 
 #ifdef BREMSSTRAHLUNG
   !----------------------------------------------------------------------------

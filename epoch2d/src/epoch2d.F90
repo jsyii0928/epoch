@@ -229,7 +229,7 @@ PROGRAM pic
         ! After this line, the particles can be accessed on a cell by cell basis
         ! Using the particle_species%secondary_list property
         IF (collision_step .OR. coll_ion_step .OR. recombine_step &
-          .OR. use_binary_collisions) THEN) THEN
+            .OR. use_binary_collisions) THEN) THEN
           CALL reorder_particles_to_grid
         END IF
 

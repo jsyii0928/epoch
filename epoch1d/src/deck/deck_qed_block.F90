@@ -45,7 +45,6 @@ CONTAINS
       use_radiation_reaction = .TRUE.
       produce_photons = .FALSE.
       photon_dynamics = .FALSE.
-
       use_binary_collisions = .FALSE.
       use_LCS = .FALSE.
       use_LCS_diff = .TRUE.
