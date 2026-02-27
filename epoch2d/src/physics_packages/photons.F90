@@ -610,7 +610,8 @@ CONTAINS
 
           current%optical_depth = current%optical_depth &
               - delta_optical_depth_photon(chi_val, part_e)
-          ! If optical depth dropped below zero generate pair...
+          ! If optical depth dropped below zero generate pair
+          ! Photon will be deleted
           IF (current%optical_depth < 0.0_num) THEN
             CALL generate_pair(current, chi_val, photon_species, &
                 breit_wheeler_electron_species, breit_wheeler_positron_species)
