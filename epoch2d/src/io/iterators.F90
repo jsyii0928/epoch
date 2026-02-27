@@ -81,8 +81,9 @@ CONTAINS
     TYPE(particle_list), POINTER, SAVE :: current_list
     INTEGER :: part_count, ndim
     REAL(num) :: part_m, part_mc, part_mcc, part_mc2, gamma_mass, csqr, charge
+#ifdef PHOTONS
     REAL(num) :: part_e, dir_x, dir_y, dir_z, norm, part_x, part_y
-
+#endif
     IF (start)  THEN
       CALL start_particle_list(current_species, current_list, cur)
     END IF
