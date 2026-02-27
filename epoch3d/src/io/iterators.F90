@@ -352,9 +352,9 @@ CONTAINS
       CASE (c_dump_part_qed_chi)
         IF (current_species%species_type == c_species_id_photon) THEN
           DO WHILE (ASSOCIATED(cur) .AND. (part_count < npoint_it))
-            part_x  = cur%part_pos - x_grid_min_local
-            part_y  = current%part_pos(2) - y_grid_min_local
-            part_z  = current%part_pos(3) - z_grid_min_local
+            part_x  = cur%part_pos(1) - x_grid_min_local
+            part_y  = cur%part_pos(2) - y_grid_min_local
+            part_z  = cur%part_pos(3) - z_grid_min_local
             norm  = c / cur%particle_energy
             dir_x = cur%part_p(1) * norm
             dir_y = cur%part_p(2) * norm
