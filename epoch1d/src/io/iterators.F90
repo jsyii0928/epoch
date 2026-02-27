@@ -18,6 +18,7 @@ MODULE iterators
   USE particle_pointer_advance
   USE partlist
   USE particle_id_hash_mod
+  USE photons
 
   IMPLICIT NONE
 
@@ -80,6 +81,7 @@ CONTAINS
     TYPE(particle_list), POINTER, SAVE :: current_list
     INTEGER :: part_count, ndim
     REAL(num) :: part_m, part_mc, part_mcc, part_mc2, gamma_mass, csqr, charge
+    REAL(num) :: part_e, dir_x, dir_y, dir_z, norm, part_x
 
     IF (start)  THEN
       CALL start_particle_list(current_species, current_list, cur)
@@ -346,6 +348,27 @@ CONTAINS
           array(part_count) = cur%optical_depth
           cur => cur%next
         END DO
+      CASE (c_dump_part_qed_chi)
+        IF (current_species%species_type == c_species_id_photon) THEN
+          DO WHILE (ASSOCIATED(cur) .AND. (part_count < npoint_it))
+            part_x  = cur%part_pos - x_grid_min_local
+            norm  = c / cur%particle_energy
+            dir_x = cur%part_p(1) * norm
+            dir_y = cur%part_p(2) * norm
+            dir_z = cur%part_p(3) * norm
+            part_e  = cur%particle_energy / m0 / c**2
+            part_count = part_count + 1
+            array(part_count) = calculate_chi(part_x, dir_x, dir_y, &
+                dir_z, part_e)
+            cur => cur%next
+          END DO
+        ELSE
+          DO WHILE (ASSOCIATED(cur) .AND. (part_count < npoint_it))
+            part_count = part_count + 1
+            array(part_count) = 0.0_num
+            cur => cur%next
+          END DO
+        END IF
 #endif
 
 #if defined(PHOTONS) || defined(BREMSSTRAHLUNG)
