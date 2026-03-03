@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/test_gpulse.dir/tests/test_gpulse.cpp.o -o test_gpulse  -Wl,-rpath,"\${CMAKE_BINARY_DIR}:/home/jsy/ep/epoch/Gpulse2.5/build" libgpulse_lib.so /usr/lib/gcc/x86_64-linux-gnu/13/libgomp.so /usr/lib/x86_64-linux-gnu/libpthread.a 

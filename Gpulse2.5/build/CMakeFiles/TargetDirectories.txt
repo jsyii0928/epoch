@@ -1,4 +1,0 @@
-/home/jsy/ep/epoch/Gpulse2.5/build/CMakeFiles/gpulse_lib.dir
-/home/jsy/ep/epoch/Gpulse2.5/build/CMakeFiles/test_gpulse.dir
-/home/jsy/ep/epoch/Gpulse2.5/build/CMakeFiles/edit_cache.dir
-/home/jsy/ep/epoch/Gpulse2.5/build/CMakeFiles/rebuild_cache.dir
